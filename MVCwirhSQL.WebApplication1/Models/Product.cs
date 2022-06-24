@@ -1,4 +1,4 @@
-﻿namespace MVCwirhSQL.WebApplication1.Models
+﻿                namespace MVCwirhSQL.WebApplication1.Models
 {
     public class Product
     {

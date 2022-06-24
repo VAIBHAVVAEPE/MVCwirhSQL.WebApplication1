@@ -39,7 +39,7 @@ namespace MVCwirhSQL.WebApplication1.Controllers
         {
             Product prod = context.GetProductById(id);
             ViewBag.Name = prod.Name;
-            ViewBag.Peice = prod.Price;
+            ViewBag.Price = prod.Price;
             ViewBag.Id = prod.Id;
             return View();
         }
@@ -52,7 +52,10 @@ namespace MVCwirhSQL.WebApplication1.Controllers
             prod.Id = Convert.ToInt32(form["id"]);
             int res = context.update(prod);
             if (res == 1)
+            {
                 return RedirectToAction("List");
+            }
+            return View();
 
         }
 
@@ -61,7 +64,7 @@ namespace MVCwirhSQL.WebApplication1.Controllers
         {
             Product prod = context.GetProductById(id);
             ViewBag.Name = prod.Name;
-            ViewBag.Peice = prod.Price;
+            ViewBag.Price = prod.Price;
             ViewBag.Id = prod.Id;
             return View();
         }
