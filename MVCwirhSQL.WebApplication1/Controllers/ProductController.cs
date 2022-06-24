@@ -12,6 +12,9 @@ namespace MVCwirhSQL.WebApplication1.Controllers
 
         public IActionResult List()
         {
+
+
+
             ViewBag.ProductList = context.GetAllProducts();
             return View();
         }
