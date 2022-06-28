@@ -1,19 +1,17 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using MVCwirhSQL.WebApplication1.Models;
+using MVCwirhSQL.Models;
 using System;
 
-namespace MVCwirhSQL.WebApplication1.Controllers
+namespace MVCwirhSQL.Controllers
 {
-    public class ProductController : Controller
-    {
-        ProductDAL context = new ProductDAL();
-        private object form;
 
+    public class CoursesController : Controller
+    {
+        CoursesDAL context = new CoursesDAL();
         public IActionResult List()
         {
-
-            ViewBag.ProductList = context.GetAllProducts();
+            ViewBag.CoursesList = context.GetAllCoursess();
             return View();
         }
         [HttpGet]
@@ -24,61 +22,53 @@ namespace MVCwirhSQL.WebApplication1.Controllers
         [HttpPost]
         public IActionResult Create(IFormCollection from)
         {
-            Product p = new Product();
-            p.Name = from["Name"];
-            p.Price = Convert.ToDecimal(from["Price"]);
-            int res = context.Save(p);
+            Courses c = new Courses();
+            c.Name = from["name"];
+            c.Price = Convert.ToDecimal(from["Price"]);
+            int res = context.Save(c);
             if (res == 1)
                 return RedirectToAction("List");
-
             return View();
+
         }
-
-
         [HttpGet]
         public IActionResult Edit(int id)
         {
-            Product prod = context.GetProductById(id);
-            ViewBag.Name = prod.Name;
-            ViewBag.Price = prod.Price;
-            ViewBag.Id = prod.Id;
+            Courses cour = context.GetCoursesById(id);
+            ViewBag.Name = cour.Name;
+            ViewBag.Price = cour.Price;
+            ViewBag.Id = cour.Id;
             return View();
         }
         [HttpPost]
         public IActionResult Edit(IFormCollection form)
         {
-            Product prod = new Product();
-            prod.Name = form["name"];
-            prod.Price = Convert.ToDecimal(form["Price"]);
-            prod.Id = Convert.ToInt32(form["id"]);
-            int res = context.update(prod);
+            Courses cour = new Courses();
+            cour.Name = form["name"];
+            cour.Price = Convert.ToDecimal(form["price"]);
+            cour.Id = Convert.ToInt32(form["id"]);
+            int res = context.Update(cour);
             if (res == 1)
-            {
                 return RedirectToAction("List");
-            }
             return View();
-
         }
-
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            Product prod = context.GetProductById(id);
-            ViewBag.Name = prod.Name;
-            ViewBag.Price = prod.Price;
-            ViewBag.Id = prod.Id;
+            Courses cour = context.GetCoursesById(id);
+            ViewBag.Name = cour.Name;
+            ViewBag.Price = cour.Price;
+            ViewBag.Id = cour.Id;
             return View();
         }
         [HttpPost]
         [ActionName("Delete")]
         public IActionResult DeleteConfirm(int id)
         {
-            
             int res = context.Delete(id);
             if (res == 1)
                 return RedirectToAction("List");
             return View();
         }
-
     }
 }

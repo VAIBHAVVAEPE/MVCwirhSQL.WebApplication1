@@ -1,0 +1,33 @@
+﻿@using MVCwirhSQL.Models
+
+@{
+    ViewData["Title"] = "List";
+}
+
+<h1>Employe List</h1>
+<p>
+    @Html.ActionLink("Add New","Create","Employe")
+</p>
+<table class="table table-bordered">
+    <tr>
+        <th>Id</th>
+        <th>Emp_Name</th>
+        <th>Dep_Name</th>
+        <th>Emp_Salary</th>
+        <th>Action</th>
+    </tr>
+    @foreach(Employe emp in ViewBag.EmployeList)
+    {
+        <tr>
+            <td>@emp.Id</td>
+            <td>@emp.Emp_Name</td>
+            <td>@emp.Dep_Name</td>
+            <td>@emp.Emp_Salary</td>
+            <td>
+                @Html.ActionLink("Edit","Edit",new{@id=emp.Id}) |
+                @Html.ActionLink("Delete","Delete",new{@id=emp.Id})
+            </td>
+        </tr>
+    }
+</table>
+

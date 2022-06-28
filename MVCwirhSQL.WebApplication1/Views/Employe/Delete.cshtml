@@ -1,0 +1,43 @@
+﻿
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h3>Are you sure to Delete Product ?</h3>
+<div class="container">
+    @{ Html.BeginForm();}
+    <div class="row">
+        <div class="col-lg-3">
+            @Html.Label("Emp Name")
+        </div>
+        <div class="col-lg-3">
+            <b>@ViewBag.Emp_Name</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            @Html.Label("Dep Name")
+        </div>
+        <div class="col-lg-3">
+            <b>@ViewBag.Dep_Name</b>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            @Html.Label("Emp Salary")
+        </div>
+        <div class="col-lg-3">
+            <b>@ViewBag.Emp_Salary</b>
+            @Html.Hidden("id", (int)ViewBag.Id)
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+        </div>
+        <div class="col-lg-3">
+            <input type="submit" value="Delete" class="btn btn-danger" />
+        </div>
+    </div>
+    @{Html.EndForm();}
+</div>
+
